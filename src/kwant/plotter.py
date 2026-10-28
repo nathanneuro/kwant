@@ -150,7 +150,8 @@ def _maybe_output_fig(fig, file=None, show=True):
             pyplot.show()
     elif _p.engine == "plotly":
         if file is not None:
-            _p.plotly_module.plot(fig, show_link=False, filename=file, auto_open=False)
+            # show_link was removed in plotly 6; it already defaulted to False.
+            _p.plotly_module.plot(fig, filename=file, auto_open=False)
         if show:
             if (_p.is_ipython_kernel):
                 _p.plotly_module.iplot(fig)
